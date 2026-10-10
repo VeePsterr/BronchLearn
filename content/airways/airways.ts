@@ -55,7 +55,7 @@ export const AIRWAYS: AirwayStructure[] = [
     parentId: null,
     anatomyClass: "standard",
     shortDescription: "The start of every route on this site. The trachea divides at the tracheal bifurcation into the right and left main bronchi.",
-    meta: verified("Tracheal length and shape vary with age, body habitus and disease."),
+    meta: verified("Airway dimensions vary between individuals; this schematic does not represent them."),
   }),
   a({
     id: "carina",

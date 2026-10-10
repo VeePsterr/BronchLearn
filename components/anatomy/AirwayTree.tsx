@@ -134,6 +134,7 @@ export function AirwayTree({
                 fill="none"
                 className="opacity-0 group-focus-visible:opacity-40"
               />
+              {a.kind === "segmental-bronchus" && <circle cx={e.x} cy={e.y} r={24} fill="transparent" data-hit="endpoint" />}
               {a.kind === "segmental-bronchus" && (
                 <circle cx={e.x} cy={e.y} r={selected ? 11 : 8} fill={selected ? "var(--accent)" : "var(--surface)"} stroke={sideColour} strokeWidth={3} />
               )}
