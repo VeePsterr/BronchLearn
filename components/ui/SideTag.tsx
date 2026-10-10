@@ -3,8 +3,8 @@ import type { Side } from "@/lib/contentSchemas";
 /** Side label that never relies on colour alone: always shows R / L / Midline text. */
 export function SideTag({ side }: { side: Side }) {
   const cfg = {
-    right: { letter: "R", text: "Right", cls: "border-right bg-right-soft text-right" },
-    left: { letter: "L", text: "Left", cls: "border-left bg-left-soft text-left" },
+    right: { letter: "R", text: "Right", cls: "border-side-r bg-side-r-soft text-side-r" },
+    left: { letter: "L", text: "Left", cls: "border-side-l bg-side-l-soft text-side-l" },
     midline: { letter: "M", text: "Midline", cls: "border-line bg-surface-2 text-muted" },
   }[side];
   return (

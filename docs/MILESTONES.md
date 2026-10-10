@@ -12,3 +12,9 @@
 - Tests: 22/22 passed; build passed
 - Draft-unverified: "Upper division bronchus of left upper lobe", "Lingular bronchus" (clinical grouping terms not found in the FIPAT extract)
 - Source-verified (AI-assisted, not human): the other 30 of 32 airway structures
+
+## Milestone 3 — 2-D navigation simulator
+- Files: lib/navigation/simulator.ts, components/sim/BronchoscopicView.tsx, components/sim/NavigationSimulator.tsx, app/navigate/page.tsx, tests/lib/simulator.test.ts, tests/components/simulator.test.tsx; colour-token rename in app/globals.css
+- Commands: `npx vitest run`, `npx tsc --noEmit`, `npx next build`
+- Tests: 37/37 passed; build passed
+- Draft-unverified: no new medical content (the simulator uses only the airway dataset). The view deliberately encodes no anatomical position or orientation.

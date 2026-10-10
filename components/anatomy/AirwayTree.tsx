@@ -67,16 +67,16 @@ export function AirwayTree({
   return (
     <svg
       viewBox="0 0 1000 720"
-      role="group"
+      role={compact ? "img" : "group"}
       aria-label={`${title}. Anterior view, patient's right on the left of the image. Schematic, not to scale.`}
       className="h-auto w-full select-none"
     >
       <title>{title}</title>
       {!compact && (
         <g aria-hidden="true" className="fill-muted text-[34px] font-bold">
-          <text x="40" y="44" className="fill-right">R</text>
+          <text x="40" y="44" className="fill-side-r">R</text>
           <text x="40" y="72" className="fill-muted text-[18px] font-normal">Patient&apos;s right</text>
-          <text x="960" y="44" textAnchor="end" className="fill-left">L</text>
+          <text x="960" y="44" textAnchor="end" className="fill-side-l">L</text>
           <text x="960" y="72" textAnchor="end" className="fill-muted text-[18px] font-normal">Patient&apos;s left</text>
           <text x="500" y="714" textAnchor="middle" className="fill-muted text-[17px] font-normal">
             Original schematic · anterior view · not to scale
@@ -99,10 +99,10 @@ export function AirwayTree({
           return (
             <g
               key={a.id}
-              role="button"
-              tabIndex={compact ? -1 : 0}
-              aria-label={accessibleName(a)}
-              aria-pressed={selected}
+              role={compact ? undefined : "button"}
+              tabIndex={compact ? undefined : 0}
+              aria-label={compact ? undefined : accessibleName(a)}
+              aria-pressed={compact ? undefined : selected}
               data-airway-id={a.id}
               onClick={() => onSelect(a.id)}
               onKeyDown={(ev) => handleKey(ev, a.id)}
@@ -160,10 +160,10 @@ export function AirwayTree({
         const selected = c.id === selectedId;
         return (
           <g
-            role="button"
-            tabIndex={compact ? -1 : 0}
-            aria-label={accessibleName(c)}
-            aria-pressed={selected}
+            role={compact ? undefined : "button"}
+            tabIndex={compact ? undefined : 0}
+            aria-label={compact ? undefined : accessibleName(c)}
+            aria-pressed={compact ? undefined : selected}
             data-airway-id={c.id}
             onClick={() => onSelect(c.id)}
             onKeyDown={(ev) => handleKey(ev, c.id)}
