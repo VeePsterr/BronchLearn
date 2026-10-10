@@ -1,6 +1,6 @@
 ---
 name: Report an anatomy or content error
-about: Tell us about an error in BronchLearn's educational content
+about: Tell us about an error in BronchRounds's educational content
 labels: content-error
 ---
 

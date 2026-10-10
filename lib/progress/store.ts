@@ -48,7 +48,7 @@ export function saveProgress(p: Progress, storage: Storage | undefined = safeSto
   if (!storage) return;
   try {
     storage.setItem(PROGRESS_KEY, JSON.stringify(p));
-    window.dispatchEvent(new Event("bronchlearn-progress"));
+    window.dispatchEvent(new Event("bronchrounds-progress"));
   } catch {
     /* storage full or blocked: progress is a convenience only */
   }
@@ -94,10 +94,10 @@ export function useProgress() {
   useEffect(() => {
     setProgress(loadProgress());
     const onChange = () => setProgress(loadProgress());
-    window.addEventListener("bronchlearn-progress", onChange);
+    window.addEventListener("bronchrounds-progress", onChange);
     window.addEventListener("storage", onChange);
     return () => {
-      window.removeEventListener("bronchlearn-progress", onChange);
+      window.removeEventListener("bronchrounds-progress", onChange);
       window.removeEventListener("storage", onChange);
     };
   }, []);

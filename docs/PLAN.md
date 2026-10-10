@@ -1,10 +1,10 @@
-# BronchLearn: Milestone 1 plan
+# BronchRounds: Milestone 1 plan
 
-_Working title. Change it in `config/site.ts`._
+_Renamed from the working title "BronchLearn" on 2026-10-10. Change it in `config/site.ts`._
 
 ## 1. Product plan (brief)
 
-BronchLearn is a static, anonymous, education-only website that teaches normal tracheobronchial
+BronchRounds is a static, anonymous, education-only website that teaches normal tracheobronchial
 anatomy, bronchoscopic orientation, segmental nomenclature and IASLC lymph-node stations, then
 reinforces them with a 2-D navigation simulator and quizzes.
 

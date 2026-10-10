@@ -1,6 +1,6 @@
 # Deployment
 
-BronchLearn is fully static (every route is prerendered). It needs no database, secrets or server state.
+BronchRounds is fully static (every route is prerendered). It needs no database, secrets or server state.
 
 ## Option A: Vercel or any Next.js host
 

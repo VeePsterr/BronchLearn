@@ -2,7 +2,7 @@
  * Site-wide configuration. Rename the site by changing `name` here only.
  */
 export const siteConfig = {
-  name: "BronchLearn",
+  name: "BronchRounds",
   tagline: "Learn the airway one branch at a time",
   description:
     "An education-only website for learning tracheobronchial anatomy, bronchoscopic orientation and IASLC lymph-node stations.",
@@ -14,9 +14,9 @@ export const siteConfig = {
    * Where learners report an anatomy error. Replace with your repository's issue form or a
    * monitored address before deployment. No personal data is collected by the site itself.
    */
-  feedbackUrl: "https://github.com/YOUR-ORG/bronchlearn/issues/new?template=anatomy-error.md",
+  feedbackUrl: "https://github.com/YOUR-ORG/bronchrounds/issues/new?template=anatomy-error.md",
   /** Storage key prefix for anonymous local progress. */
-  storagePrefix: "bronchlearn",
+  storagePrefix: "bronchrounds",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

@@ -1,4 +1,4 @@
-# BronchLearn
+# BronchRounds
 
 An education-only website for learning tracheobronchial anatomy, bronchoscopic orientation, segmental
 nomenclature (RB1–RB10, LB1+2–LB10) and IASLC thoracic lymph-node stations, with a 2-D navigation
@@ -6,7 +6,7 @@ simulator, a tumour-context nodal-staging exercise and a quiz centre.
 
 > **For education only. Not for patient-specific decision-making or unsupervised procedural use.**
 
-"BronchLearn" is a working title. Change it in `config/site.ts` (`name`), which is the only place it is set.
+"BronchRounds" is the site name. Change it in `config/site.ts` (`name`), which is the only place it is set.
 
 ## Requirements
 
@@ -86,7 +86,7 @@ review, and the checklist below.
 ## Privacy
 
 No accounts, analytics, cookies, database or server storage. Progress (visited items, quiz counts)
-is stored in the browser's localStorage under `bronchlearn.progress.v1` and contains no identity or
+is stored in the browser's localStorage under `bronchrounds.progress.v1` and contains no identity or
 patient data.
 
 ## Deployment
