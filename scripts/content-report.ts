@@ -3,6 +3,8 @@
  * Usage: npm run content:report
  */
 import { AIRWAYS } from "@/content/airways/airways";
+import { BRONCHOSCOPIC_VIEWS, VIEW_CONVENTION } from "@/content/airways/bronchoscopicViews";
+import { CARINAS } from "@/content/airways/carinas";
 import { GLOSSARY } from "@/content/glossary/glossary";
 import { NODAL_RULES } from "@/content/staging/nodalRules";
 import { STATIONS } from "@/content/stations/stations";
@@ -12,6 +14,9 @@ import { QUESTION_BANK } from "@/lib/quiz/bank";
 type Row = { group: string; id: string; status: string };
 const rows: Row[] = [
   ...AIRWAYS.map((a) => ({ group: "airway", id: a.code ?? a.id, status: a.meta.reviewStatus })),
+  ...CARINAS.map((c) => ({ group: "carina", id: c.label, status: c.meta.reviewStatus })),
+  { group: "view-convention", id: "screen-orientation", status: VIEW_CONVENTION.meta.reviewStatus },
+  ...BRONCHOSCOPIC_VIEWS.map((v) => ({ group: "view-layout", id: v.airwayId, status: v.meta.reviewStatus })),
   ...STATIONS.map((s) => ({ group: "station-anatomy", id: s.stationCode, status: s.reviewStatus })),
   ...STATIONS.map((s) => ({ group: "station-access", id: s.stationCode, status: s.accessibleBy.meta.reviewStatus })),
   ...STATIONS.flatMap((s) =>

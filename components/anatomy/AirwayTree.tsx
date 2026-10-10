@@ -4,6 +4,7 @@ import type { KeyboardEvent } from "react";
 import type { PatternMode } from "@/content/airways/airways";
 import type { AirwayStructure, Lobe, Side } from "@/lib/contentSchemas";
 import { AIRWAYS, getPath, isVisibleInMode, shortLabel } from "@/lib/navigation/tree";
+import { CARINAS } from "@/content/airways/carinas";
 import { AIRWAY_ENDPOINTS, DIAGRAM_LABELS, STROKE_BY_KIND, TRACHEA_START, type Pt } from "./airwayLayout";
 
 export interface AirwayTreeProps {
@@ -17,6 +18,8 @@ export interface AirwayTreeProps {
   highlightIds?: string[];
   /** Compact rendering for the mini-map. */
   compact?: boolean;
+  /** Mirror left-right so the patient's left is on the viewer's left (bronchoscopist's view). */
+  mirrored?: boolean;
   title?: string;
 }
 
@@ -51,6 +54,7 @@ export function AirwayTree({
   lobeFilter,
   highlightIds = [],
   compact = false,
+  mirrored = false,
   title = "Schematic airway tree",
 }: AirwayTreeProps) {
   const visible = AIRWAYS.filter((a) => isVisibleInMode(a, mode) && AIRWAY_ENDPOINTS[a.id]);
@@ -68,7 +72,7 @@ export function AirwayTree({
     <svg
       viewBox="0 0 1000 720"
       role={compact ? "img" : "group"}
-      aria-label={`${title}. Anterior view, patient's right on the left of the image. Schematic, not to scale.`}
+      aria-label={`${title}. ${mirrored ? "Bronchoscopist's view, patient's left on the left of the image" : "Anterior view, patient's right on the left of the image"}. Schematic, not to scale.`}
       className="h-auto w-full select-none"
     >
       <title>{title}</title>
@@ -84,6 +88,13 @@ export function AirwayTree({
         </g>
       )}
 
+      {compact && (
+        <g aria-hidden="true" className="text-[40px] font-bold">
+          <text x="30" y="60" className={mirrored ? "fill-side-l" : "fill-side-r"}>{mirrored ? "L" : "R"}</text>
+          <text x="970" y="60" textAnchor="end" className={mirrored ? "fill-side-r" : "fill-side-l"}>{mirrored ? "R" : "L"}</text>
+        </g>
+      )}
+      <g transform={mirrored ? "translate(1000 0) scale(-1 1)" : undefined}>
       {/* Airway segments */}
       {visible
         .filter((a) => a.kind !== "carina")
@@ -153,6 +164,23 @@ export function AirwayTree({
           );
         })}
 
+      {/* Secondary carina markers (labels only; details are on the info card) */}
+      {!compact &&
+        CARINAS.filter((c) => c.atAirwayId !== "carina" && visible.some((a) => a.id === c.atAirwayId)).map((c) => {
+          const p = AIRWAY_ENDPOINTS[c.atAirwayId];
+          if (!p) return null;
+          return (
+            <g key={c.id} aria-hidden="true" data-carina-marker={c.id} className="pointer-events-none">
+              <path d={`M${p.x - 7} ${p.y} L${p.x} ${p.y - 7} L${p.x + 7} ${p.y} L${p.x} ${p.y + 7} Z`} fill="var(--surface)" stroke="var(--ink)" strokeWidth={2} />
+              {showLabels && (
+                <text x={p.x} y={p.y + 28} textAnchor="middle" className="fill-accent text-[18px] font-bold" style={{ paintOrder: "stroke", stroke: "var(--bg)", strokeWidth: 5 }}>
+                  {c.label}
+                </text>
+              )}
+            </g>
+          );
+        })}
+
       {/* Carina marker */}
       {(() => {
         const c = AIRWAYS.find((a) => a.kind === "carina");
@@ -186,6 +214,7 @@ export function AirwayTree({
           </g>
         );
       })()}
+      </g>
     </svg>
   );
 }

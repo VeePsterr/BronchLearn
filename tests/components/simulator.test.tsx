@@ -16,10 +16,33 @@ describe("NavigationSimulator", () => {
     expect(screen.getByRole("heading", { level: 2, name: /Right superior lobar bronchus/ })).toBeInTheDocument();
   });
 
-  it("states that the view is a schematic simulation", () => {
+  it("states that the view is a computer-generated simulation, not a patient image", () => {
     render(<NavigationSimulator />);
-    expect(screen.getByText(/Simulated learning view/)).toBeInTheDocument();
-    expect(screen.getByText(/not/, { selector: "strong" })).toBeInTheDocument();
+    expect(screen.getByText(/Simulated learning view \(original computer-generated rendering, not a patient image\)/)).toBeInTheDocument();
+  });
+
+  it("at the main carina shows the left main bronchus on the left of the screen and lists it first", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<NavigationSimulator />);
+    await user.click(screen.getByRole("button", { name: /Advance to Carina/ }));
+    const view = screen.getByRole("img", { name: /Simulated learning view at Carina of trachea/ });
+    expect(view).toHaveAccessibleName(/Openings: LMB \(left\), RMB \(right\)/);
+    const buttons = screen.getAllByRole("button", { name: /branch \(patient's/ });
+    expect(buttons[0]).toHaveAccessibleName(/Left branch/);
+    expect(buttons[1]).toHaveAccessibleName(/Right branch/);
+    const lmb = container.querySelector('[data-opening="lmb"] ellipse:nth-of-type(2)')!;
+    const rmb = container.querySelector('[data-opening="rmb"] ellipse:nth-of-type(2)')!;
+    expect(Number(lmb.getAttribute("cx"))).toBeLessThan(Number(rmb.getAttribute("cx")));
+    expect(container.querySelector('[data-carina="main-carina"]')).not.toBeNull();
+  });
+
+  it("labels secondary carina RC1 in the right main bronchus view", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<NavigationSimulator />);
+    await user.click(screen.getByRole("button", { name: /Advance to Carina/ }));
+    await user.click(screen.getByRole("button", { name: /Right branch/ }));
+    expect(container.querySelector('[data-carina="RC1"]')).toHaveTextContent("RC1");
+    expect(screen.getByTestId("carina-note")).toHaveTextContent(/RC1.*right upper lobe bronchus from the bronchus intermedius/);
   });
 
   it("quiz mode gives immediate feedback on a branch choice", async () => {

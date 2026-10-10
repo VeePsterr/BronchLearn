@@ -64,9 +64,14 @@ uncertainty notes. Draft content is always badged. Procedural details (approach,
 landmarks, sampling notes) are stored as `SensitiveText` and never rendered unless clinician-reviewed
 with a named reviewer.
 
-In version 0.1.0-draft nothing is clinician-reviewed, and "source-verified" means an AI-assisted
+In version 0.2.0-draft nothing is clinician-reviewed, and "source-verified" means an AI-assisted
 comparison with source text, not a human review. Several sources could not be accessed during the
 build (see `docs/PLAN.md` §2), so modality access and N-category rules remain draft.
+
+The navigator shows original computer-generated airway views with the patient's left on the screen
+left, labels the main carina and secondary carinas (RC1, RC2, LC1, LC2), and stores view layouts in
+`content/airways/bronchoscopicViews.ts` and carinas in `content/airways/carinas.ts`. Screen
+orientation, opening positions and LC1/LC2 naming are draft until a bronchoscopist reviews them.
 
 See `docs/CONTENT_REVIEW.md` for how to review content, the list of content requiring specialist
 review, and the checklist below.
@@ -95,5 +100,5 @@ See `docs/DEPLOYMENT.md`.
 
 ## Copyright
 
-All illustrations are original SVG drawn for this project. No video footage, screenshots, narration,
+All illustrations are original SVG drawn or procedurally generated for this project; the simulated bronchoscopic views are computer-generated, not patient images. No video footage, screenshots, narration,
 transcripts or published diagrams are used. See `docs/COPYRIGHT_AUDIT.md`.

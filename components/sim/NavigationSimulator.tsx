@@ -20,7 +20,17 @@ import {
 } from "@/lib/navigation/simulator";
 import { getAirway, getPath, requireAirway } from "@/lib/navigation/tree";
 import { progressActions, useProgress } from "@/lib/progress/store";
-import { BronchoscopicView } from "./BronchoscopicView";
+import { getCarinaAt } from "@/content/airways/carinas";
+import { VIEW_CONVENTION } from "@/content/airways/bronchoscopicViews";
+import { ReviewBadge } from "@/components/ui/ReviewBadge";
+import { BronchoscopicView, layoutOpenings } from "./BronchoscopicView";
+
+const MOVE_MS = 420;
+
+function prefersMotion(): boolean {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
+  return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 const DIRECTION_ICON = { forward: "↑", "right-branch": "R", "left-branch": "L", branch: "→" } as const;
 
@@ -32,7 +42,12 @@ export function NavigationSimulator() {
   const [round, setRound] = useState(0);
   const { update } = useProgress();
 
-  const choices = getChoices(state);
+  const [movingTo, setMovingTo] = useState<string | null>(null);
+  const rawChoices = getChoices(state);
+  // List choices in the same left-to-right order as they appear on screen.
+  const screenX = new Map(layoutOpenings(state.currentId, rawChoices).openings.map((o) => [o.id, o.cx]));
+  const choices = [...rawChoices].sort((a, b) => (screenX.get(a.id) ?? 0) - (screenX.get(b.id) ?? 0));
+  const carinaHere = getCarinaAt(state.currentId);
   const current = requireAirway(state.currentId);
   const pathIds = getPath(state.currentId).map((a) => a.id);
 
@@ -44,6 +59,19 @@ export function NavigationSimulator() {
   };
 
   const choose = (id: string) => {
+    if (movingTo) return;
+    if (prefersMotion()) {
+      setMovingTo(id);
+      window.setTimeout(() => {
+        setMovingTo(null);
+        commit(id);
+      }, MOVE_MS);
+    } else {
+      commit(id);
+    }
+  };
+
+  const commit = (id: string) => {
     const r = advance(state, id);
     setState(r.state);
     setFeedback(r.feedback);
@@ -146,7 +174,19 @@ export function NavigationSimulator() {
             showLabels={mode === "explore"}
             numbered={mode !== "explore"}
             onChoose={mode === "label" ? undefined : choose}
+            focusId={movingTo}
           />
+          {carinaHere && (
+            <p className="mt-3 rounded-lg bg-surface-2 p-3 text-sm" data-testid="carina-note">
+              <span className="font-semibold">
+                {carinaHere.label === "Main carina" ? "Main carina" : `Secondary carina ${carinaHere.label}`} ({carinaHere.name}):
+              </span>{" "}
+              {carinaHere.description} <ReviewBadge status={carinaHere.meta.reviewStatus} compact />
+            </p>
+          )}
+          <p className="mt-2 flex flex-wrap items-center gap-2 text-xs text-muted">
+            Screen orientation: {VIEW_CONVENTION.summary} <ReviewBadge status={VIEW_CONVENTION.meta.reviewStatus} compact />
+          </p>
         </section>
 
         <section aria-label="Controls and map" className="space-y-4">
@@ -210,8 +250,9 @@ export function NavigationSimulator() {
               sideFilter="all"
               lobeFilter="all"
               highlightIds={pathIds}
+              mirrored
             />
-            <p className="px-2 pb-1 text-xs text-muted">Highlighted: route travelled so far. Anterior view, patient&apos;s right on the left.</p>
+            <p className="px-2 pb-1 text-xs text-muted">Highlighted: route travelled so far. Drawn to match the scope view: patient&apos;s left on the left, right on the right.</p>
           </div>
         </section>
       </div>

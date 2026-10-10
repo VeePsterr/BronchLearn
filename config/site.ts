@@ -7,7 +7,7 @@ export const siteConfig = {
   description:
     "An education-only website for learning tracheobronchial anatomy, bronchoscopic orientation and IASLC lymph-node stations.",
   /** Bump when any file under /content changes. Shown on the About page. */
-  contentVersion: "0.1.0-draft",
+  contentVersion: "0.2.0-draft",
   contentDate: "2026-10-10",
   notice: "For education only. Not for patient-specific decision-making or unsupervised procedural use.",
   /**

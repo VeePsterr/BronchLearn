@@ -9,7 +9,7 @@ export default function NavigatePage() {
     <>
       <PageHeader
         title="Simulated bronchoscopy navigation"
-        intro="A two-dimensional, schematic simulation for learning the order of branches from the trachea to the segmental bronchi. It is not a patient-specific view and does not show real orientation."
+        intro="A computer-generated simulation for learning the order of branches from the trachea to the segmental bronchi, shown with the patient's left on the left of the screen. It is not a patient image, and opening positions are approximate and awaiting clinician review."
       />
       <NavigationSimulator />
     </>

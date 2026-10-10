@@ -1,6 +1,6 @@
 # Content review guide, specialist review list and deployment checklist
 
-## What "source-verified" means in version 0.1.0-draft
+## What "source-verified" means in version 0.2.0-draft
 
 Every item marked `source-verified` was compared with source **text** retrieved through an
 automated, AI-assisted fetch tool on 2026-10-10 (see the source-access audit in `PLAN.md` §2).
@@ -40,7 +40,9 @@ or thoracic surgeon with EBUS experience.
 | 8 | Glossary drafts (EBUS-TBNA, EUS-B-FNA, procedural access, N category, lingula) | content/glossary/glossary.ts | **draft-unverified** | Bronchoscopist | Definitions. |
 | 9 | Lesson text | app/lessons/airway-orientation/page.mdx | source-verified (AI) | Educator / bronchoscopist | Teaching order and wording. |
 | 10 | Procedural fields (approach, US landmarks, sampling notes) ×20 | stations.ts | empty, hidden | Bronchoscopist | Only if the team decides to teach them. Never describe any location as universally safe. |
-| 11 | Simulator schematic | components/sim/BronchoscopicView.tsx | n/a (no positional claims) | Educator | Confirm the on-screen disclaimer is sufficient; any real orientation teaching needs new, reviewed content. |
+| 11 | Simulator screen orientation (patient's left on the screen left, as seen from the head of the patient) | content/airways/bronchoscopicViews.ts → `VIEW_CONVENTION` | **draft-unverified** | Bronchoscopist | Confirm the convention for the scope position the site intends to teach, and add an authoritative source. Currently based on the owner's instruction and an Olympus poster (non-authoritative). |
+| 11a | On-screen opening positions for 10 views (trachea, carina, RMB, RUL, BI, RLL, LMB, LUL, upper division, LLL) | content/airways/bronchoscopicViews.ts | **draft-unverified** | Bronchoscopist | Check each opening's approximate position and relative size; RML and lingula are not modelled. |
+| 11b | Secondary carina labels | content/airways/carinas.ts | RC1, RC2 source-verified (AI); **LC1, LC2 draft** | Bronchoscopist | Decide LC1/LC2 naming: the Jaypee chapter text and its figure captions disagree. |
 | 12 | Station map marker positions | components/ebus/stationLayout.ts | n/a (labelled approximate) | Bronchoscopist | Confirm the schematic is not misleading. |
 
 ## Medical-review checklist before deployment

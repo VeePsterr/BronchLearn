@@ -100,6 +100,34 @@ export const SOURCES: Source[] = [
     usedFor: ["N-category learning mode (draft)"],
   },
   {
+    id: "jaypee-bronchoscopy-icu-ch1",
+    shortTitle: "Bronchoscopy in ICU, Ch. 1: Bronchoscopic Anatomy of Tracheobronchial Tree (Jaypee)",
+    citation:
+      "Goel MK, Kumar L, Kant S. Bronchoscopic Anatomy of Tracheobronchial Tree. In: Bronchoscopy in ICU: A Practical Guide, Chapter 1. Jaypee Brothers Medical Publishers. ISBN 9789352704699. Author list to be confirmed against the book (the chapter byline and book listing differ).",
+    url: "https://www.jaypeedigital.com/eReader/chapter/9789352704699/ch1",
+    kind: "textbook",
+    authoritative: true,
+    accessStatus: "partially-accessed",
+    accessedDate: "2026-10-10",
+    accessNotes:
+      "Chapter text read via an automated tool on 2026-10-10 (suggested by the project owner). Defines RC1 and RC2. Its text and figure captions disagree about LC1 (text: between upper division and lingula; Fig. 31 caption: between left upper and left lower lobe bronchi). It does not state which side of the screen each main bronchus appears on. Figures were not viewed and nothing is reproduced.",
+    usedFor: ["Secondary carina names (RC1, RC2, LC1, LC2)", "Branch order"],
+  },
+  {
+    id: "olympus-videobronchoscopy-poster",
+    shortTitle: "Olympus poster: Videobronchoscopy – Nomenclature and Anatomy of the Bronchial Tree (2018)",
+    citation:
+      "Olympus. Videobronchoscopy: Nomenclature and Anatomy of the Bronchial Tree (poster E0428301, 07/18). Clinical images credited to Prof. Dr. med. Ralf Eberhardt, Thoraxklinik, University of Heidelberg.",
+    url: "https://www.olympus-europa.com/",
+    kind: "user-supplied-reference",
+    authoritative: false,
+    accessStatus: "accessed-text",
+    accessedDate: "2026-10-10",
+    accessNotes:
+      "PDF supplied by the project owner and viewed directly. Manufacturer educational material, so it is not treated as authoritative. Used only to inform the approximate on-screen arrangement of openings (for example the left main bronchus on the left of the screen at the main carina) in draft, clinician-review-pending view layouts. No images, drawings, colours or text are copied or traced. URL is the publisher's home page; the poster's own URL is unknown.",
+    usedFor: ["Draft on-screen opening arrangement in the simulated bronchoscopic views"],
+  },
+  {
     id: "ats-intro-bronchoscopy-video",
     shortTitle: "ATS: Introduction to Bronchoscopy – Lecture (video)",
     citation: "American Thoracic Society. Introduction to Bronchoscopy – Lecture. YouTube.",

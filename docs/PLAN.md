@@ -39,6 +39,8 @@ the source. Every "accessed" result below therefore still needs a human spot-che
 | ERS/ESGE/ESTS endosonography guideline (Eur Respir J 68(2), 2026) | **Not accessible** (server error) | Title confirmed only from a search-results listing. No content read. |
 | EBUS-TBNA guideline, PMC10401980 | **Not accessible** (browser-check page) | Nothing. Title, authors and content unknown. |
 | CHEST guideline on acquisition and handling of EBUS-TBNA samples (2024) | **Not accessible** (fetch error) | Title confirmed from search-results listing only. |
+| Jaypee, _Bronchoscopy in ICU_, Ch. 1 "Bronchoscopic Anatomy of Tracheobronchial Tree" (added 2026-10-10 at the owner's request) | Accessed (text; figures not viewed) | Secondary carina names. RC1 = RUL bronchus / bronchus intermedius; RC2 = RML / RLL. LC1 wording differs between text and figure captions. Does not state screen orientation. |
+| Olympus poster "Videobronchoscopy: Nomenclature and Anatomy of the Bronchial Tree" (PDF supplied by the owner) | Viewed directly; non-authoritative manufacturer material | Informs only the draft on-screen arrangement of openings (e.g. left main bronchus on the screen left at the main carina). Nothing copied or traced. |
 
 Consequences:
 
@@ -59,7 +61,7 @@ Consequences:
 | R3 | Sampling/puncture/needle information | `SensitiveText` type; renderer refuses anything not `clinician-reviewed` with named reviewer; no such text authored |
 | R4 | N category shown without tumour context | Staging UI and quiz require a tumour side first; validation test fails if an N question lacks context |
 | R5 | LB7+8 or LB1+2 patterns marked as wrong | Quiz answers allow accepted equivalents; simulator accepts combined-pattern routes |
-| R6 | Schematic drawings read as true anatomy / true bronchoscopic orientation | Every figure labelled "schematic, not to scale"; simulator openings explicitly not in true positions; R/L text labels |
+| R6 | Schematic drawings read as true anatomy / true bronchoscopic orientation | Every figure labelled "schematic, not to scale"; simulator views are original computer-generated renderings with draft, approximate opening positions (patient's left on screen left), L/R corner markers and a caption saying so |
 | R7 | Spatial proximity misread as procedural access | Access is a separate data field with its own sources; UI never derives it from the map |
 | R8 | Clinical grouping terms (upper division, lingular bronchus, main carina) not in the retrieved FIPAT extract | Marked `draft-unverified` with a note |
 | R9 | Copyrighted diagrams/video frames reused | Only original SVG; attribution audit in Milestone 6 |

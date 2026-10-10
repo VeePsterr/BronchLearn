@@ -1,5 +1,6 @@
 import type { PatternMode } from "@/content/airways/airways";
 import type { AirwayStructure } from "@/lib/contentSchemas";
+import { getCarinaAt } from "@/content/airways/carinas";
 import { getAirway, getAllChildren, isVisibleInMode } from "@/lib/navigation/tree";
 import { MetaFooter } from "@/components/ui/MetaFooter";
 import { ReviewBadge } from "@/components/ui/ReviewBadge";
@@ -31,6 +32,7 @@ export function AirwayInfoCard({
 }) {
   const parent = airway.parentId ? getAirway(airway.parentId) : undefined;
   const children = getAllChildren(airway.id);
+  const carina = getCarinaAt(airway.id);
   return (
     <article aria-labelledby="airway-card-title" className="rounded-xl border border-line bg-surface p-5 shadow-sm">
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -84,6 +86,16 @@ export function AirwayInfoCard({
             </ul>
           )}
         </dd>
+        {carina && (
+          <>
+            <dt className="font-semibold">Carina at this division</dt>
+            <dd data-testid="carina-at-division">
+              <span className="font-mono font-semibold">{carina.label}</span>
+              {carina.label !== carina.name && <> ({carina.name})</>}: {carina.description}{" "}
+              <ReviewBadge status={carina.meta.reviewStatus} compact />
+            </dd>
+          </>
+        )}
         {airway.aliases.length > 0 && (
           <>
             <dt className="font-semibold">Also called</dt>
