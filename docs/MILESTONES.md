@@ -18,3 +18,11 @@
 - Commands: `npx vitest run`, `npx tsc --noEmit`, `npx next build`
 - Tests: 37/37 passed; build passed
 - Draft-unverified: no new medical content (the simulator uses only the airway dataset). The view deliberately encodes no anatomical position or orientation.
+
+## Milestone 4 — IASLC/EBUS stations and tumour-context nodal mode
+- Files: content/stations/stations.ts (20 stations), content/stations/zones.ts, content/staging/nodalRules.ts, components/ebus/{StationMap,stationLayout,StationCard,StationAtlas,StagingExercise}.tsx, app/stations/page.tsx, app/staging/page.tsx, tests/content/stations.test.ts, tests/components/stations.test.tsx
+- Commands: `npx vitest run`, `npx tsc --noEmit`, `npx next build`
+- Tests: 74/74 passed; build passed
+- Source-verified (AI-assisted, not human): station names and boundary wording for all 20 stations (IASLC 2009 text); AP zone = stations 5 and 6
+- Draft-unverified: modality access (EBUS-TBNA / EUS-B-FNA) for all 20 stations; zone groupings other than AP; all 11 N-category rules
+- Hidden (no text authored): typical airway approach, ultrasound landmarks, sampling notes for every station
