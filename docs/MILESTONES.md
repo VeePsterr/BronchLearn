@@ -33,3 +33,9 @@
 - Tests: Vitest 90/90; Playwright 36/36 (smoke + axe-core WCAG 2.0/2.1/2.2 A/AA on all 9 pages + keyboard checks, desktop and mobile)
 - Quiz bank: 77 questions (62 verified, 15 draft). Draft questions (modality access, N category, routes/branches through grouping terms) are hidden unless the learner switches them on.
 - Draft-unverified: glossary entries for Lingula, Procedural access, EBUS-TBNA, EUS-B-FNA, N category
+
+## Milestone 6 — audits, README, deployment, review list
+- Files: README.md, docs/CONTENT_REVIEW.md (review guide, specialist review list, deployment checklist), docs/MEDICAL_CONTENT_AUDIT.md, docs/COPYRIGHT_AUDIT.md, docs/DEPLOYMENT.md, scripts/content-report.ts, .github/ISSUE_TEMPLATE/anatomy-error.md, tests/content/glossary.test.ts, package.json scripts (`content:report`, `check`)
+- Commands: `npm run content:report`, `npm run check`, `npx playwright test`
+- Tests: Vitest 92/92; Playwright 36/36; typecheck and build passed
+- Draft-unverified: 2 airway grouping terms, 20 station-access records, 6 zones, 11 N-category rules, 5 glossary terms, 15 quiz questions (see `npm run content:report`)
