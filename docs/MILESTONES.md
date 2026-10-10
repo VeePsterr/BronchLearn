@@ -11,4 +11,4 @@
 - Commands: `npx vitest run`, `npx next build`
 - Tests: 22/22 passed; build passed
 - Draft-unverified: "Upper division bronchus of left upper lobe", "Lingular bronchus" (clinical grouping terms not found in the FIPAT extract)
-- Source-verified (AI-assisted, not human): all other 31 airway structures
+- Source-verified (AI-assisted, not human): the other 30 of 32 airway structures
