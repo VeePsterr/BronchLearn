@@ -14,7 +14,7 @@ export const siteConfig = {
    * Where learners report an anatomy error. Replace with your repository's issue form or a
    * monitored address before deployment. No personal data is collected by the site itself.
    */
-  feedbackUrl: "https://github.com/YOUR-ORG/bronchrounds/issues/new?template=anatomy-error.md",
+  feedbackUrl: "https://github.com/VeePsterr/BronchLearn/issues/new?template=anatomy-error.md",
   /** Storage key prefix for anonymous local progress. */
   storagePrefix: "bronchrounds",
 } as const;
